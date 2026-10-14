@@ -1,0 +1,34 @@
+corpus: train 507,259 bytes, held-out 125,894 bytes
+
+[trainers] 11,294 distinct pre-tokens, 400 merges
+  naive recount     10.85 s
+  incremental        1.22 s   (8.9x faster)
+  identical merge lists and counts: True
+
+[train] vocab 2048 = 256 bytes + 1790 merges + 2 specials  (1.94 s)
+  first merges: 'sh', 'ou', ' t', 'ie', 'gr', 'ea', 'ck', 'oun', 'grie', 'in', 'griesh', 'oungriesh'
+  longest tokens: ' shouchisttharation', ' intergonraidrairt', ' interbrabiestgrem', ' brabiestgremation', ' δεδομένα', ' brabiestgremness'
+  saved output/tokenizer.json; reload encodes held-out identically: True
+
+[compression] bytes per token, prefixes of the same merge list
+  merges   train  held-out  held tokens
+       0   1.000     1.000      125,894
+      64   1.830     1.832       68,705
+     128   2.393     2.396       52,548
+     256   3.067     3.067       41,042
+     512   3.829     3.810       33,042
+    1024   4.536     4.519       27,859
+    1790   5.075     5.020       25,076
+  held-out token count non-increasing in merges: True
+
+[generalisation] held-out pre-tokens never seen in training: 1,912 of 4,064
+  tokens per pre-token: seen 1.92, unseen 2.98, raw bytes for unseen 13.01
+  novel compound 'Ungeshpeackationful rezoudooizement'
+    -> U|n|geshpeack|ation|ful| rezoudoo|izement
+
+[checks] decode(encode(x)) == x on mixed-script samples: True
+  greedy min-rank encoder == merge-replay encoder: True
+  special tokens: <|endoftext|>|ne|w| d|o|c|<|pad|>|<|pad|>
+  specials disabled: 29 ordinary tokens
+  emoji seen in training '🚀' -> [b'\xf0\x9f', b'\x9a\x80']
+  emoji never seen '🧬' -> [b'\xf0\x9f', b'\xa7', b'\xac']
